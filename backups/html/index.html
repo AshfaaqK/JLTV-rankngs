@@ -1,0 +1,401 @@
+{% include "header.html" %}
+
+<div class="container animate__animated animate__fadeIn">
+
+    <div class="row justify-content-center">
+
+        <div class="col form-pad">
+            <p class="text-center season-header">
+                SEASON {{ current_season.season_id }} GAME {{ current_season.games_played }}
+            </p>
+        </div>
+
+    </div>
+
+    {% if top3[0] %}
+    <div class="row justify-content-center shiny-first">
+
+        <div class="col form-pad first-place">
+
+            <h1 class="text-center">
+                {{ top3[0].name }}
+            </h1>
+            <h3 class="text-center">
+                {{ top3[0].JLTV }}
+            </h3>
+            <div class="row">
+                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-end">
+                    <h5>
+                        Played: <br>
+                        Wins: <br>
+                        Kills: <br>
+                        Rounds_Played: <br> <br>
+                        Average_Kills: <br>
+                        KPR: <br>
+                        A/ADR: <br>
+                        Winrate: <br> <br>
+                        Inconsistency: <br>
+                        Team_Balance: <br>
+                        Individual: <br>
+                        MLTV:
+                    </h5>
+                </div>
+
+                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-start">
+                    <h5>
+                        {{ top3[0].played }} <br>
+                        {{ top3[0].total_wins }} <br>
+                        {{ top3[0].total_kills }} <br>
+                        {{ top3[0].total_rounds }} <br> <br>
+                        {{ top3[0].AK }} <br>
+                        {{ top3[0].KPR }} <br>
+                        {{ top3[0].A_ADR }} <br>
+                        {{ top3[0].winrate }}% <br> <br>
+                        {{ top3[0].inconsistency }} <br>
+                        {{ top3[0].team_balance }}% <br>
+                        {{ top3[0].individual }} <br>
+                        {{ top3[0].MLTV }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+
+        {% if top3[1] %}
+        <div class="col-lg-6 col-md-6 col-sm-12 form-pad shiny-second">
+
+            <h2 class="text-center">
+                {{ top3[1].name }}
+            </h2>
+            <h4 class="text-center">
+                {{ top3[1].JLTV }}
+            </h4>
+
+            <div class="row">
+                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-end">
+                    <h6>
+                        Played: <br>
+                        Wins: <br>
+                        Kills: <br>
+                        Rounds_Played: <br> <br>
+                        Average_Kills: <br>
+                        KPR: <br>
+                        A/ADR: <br>
+                        Winrate: <br> <br>
+                        Inconsistency: <br>
+                        Team_Balance: <br>
+                        Individual: <br>
+                        MLTV:
+                    </h6>
+                </div>
+
+                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-start">
+                    <h6>
+                        {{ top3[1].played }} <br>
+                        {{ top3[1].total_wins }} <br>
+                        {{ top3[1].total_kills }} <br>
+                        {{ top3[1].total_rounds }} <br> <br>
+                        {{ top3[1].AK }} <br>
+                        {{ top3[1].KPR }} <br>
+                        {{ top3[1].A_ADR }} <br>
+                        {{ top3[1].winrate }}% <br> <br>
+                        {{ top3[1].inconsistency }} <br>
+                        {{ top3[1].team_balance }}% <br>
+                        {{ top3[1].individual }} <br>
+                        {{ top3[1].MLTV }}
+                    </h6>
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+
+        {% if top3[2] %}
+        <div class="col-lg-6 col-md-6 col-sm-12 form-pad shiny-third">
+
+            <h2 class="text-center">
+                {{ top3[2].name }}
+            </h2>
+            <h4 class="text-center">
+                {{ top3[2].JLTV }}
+            </h4>
+
+            <div class="row">
+                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-end">
+                    <h6>
+                        Played: <br>
+                        Wins: <br>
+                        Kills: <br>
+                        Rounds_Played: <br> <br>
+                        Average_Kills: <br>
+                        KPR: <br>
+                        A/ADR: <br>
+                        Winrate: <br> <br>
+                        Inconsistency: <br>
+                        Team_Balance: <br>
+                        Individual: <br>
+                        MLTV:
+                    </h6>
+                </div>
+
+                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-start">
+                    <h6>
+                        {{ top3[2].played }} <br>
+                        {{ top3[2].total_wins }} <br>
+                        {{ top3[2].total_kills }} <br>
+                        {{ top3[2].total_rounds }} <br> <br>
+                        {{ top3[2].AK }} <br>
+                        {{ top3[2].KPR }} <br>
+                        {{ top3[2].A_ADR }} <br>
+                        {{ top3[2].winrate }}% <br> <br>
+                        {{ top3[2].inconsistency }} <br>
+                        {{ top3[2].team_balance }}% <br>
+                        {{ top3[2].individual }} <br>
+                        {{ top3[2].MLTV }}
+                    </h6>
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+    {% if s_tier %}
+        <hr class="line-break">
+        <p class="tier s">S</p>
+        <div class="row justify-content-center s">
+            <div class="col text-end">
+                <h6>
+                    Player: <br>
+                    JLTV: <br> <br>
+                    Played: <br>
+                    Wins: <br>
+                    Kills: <br>
+                    Rounds_Played: <br> <br>
+                    Average_Kills: <br>
+                    KPR: <br>
+                    A/ADR: <br>
+                    Winrate: <br> <br>
+                    Inconsistency: <br>
+                    Team_Balance: <br>
+                    Individual: <br>
+                    MLTV:
+                </h6>
+            </div>
+
+            {% for player in s_tier %}
+                <div class="col text-start">
+                    <h6>
+                        {{ player.name }} <br>
+                        {{ player.JLTV }} <br> <br>
+                        {{ player.played }} <br>
+                        {{ player.total_wins }} <br>
+                        {{ player.total_kills }} <br>
+                        {{ player.total_rounds }} <br> <br>
+                        {{ player.AK }} <br>
+                        {{ player.KPR }} <br>
+                        {{ player.A_ADR }} <br>
+                        {{ player.winrate }}% <br> <br>
+                        {{ player.inconsistency }} <br>
+                        {{ player.team_balance }}% <br>
+                        {{ player.individual }} <br>
+                        {{ player.MLTV }}
+                    </h6>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if a_tier %}
+        <hr class="line-break">
+        <p class="tier a ">A</p>
+        <div class="row justify-content-center a">
+            <div class="col text-end">
+                <h6>
+                    Player: <br>
+                    JLTV: <br> <br>
+                    Played: <br>
+                    Wins: <br>
+                    Kills: <br>
+                    Rounds_Played: <br> <br>
+                    Average_Kills: <br>
+                    KPR: <br>
+                    A/ADR: <br>
+                    Winrate: <br> <br>
+                    Inconsistency: <br>
+                    Team_Balance: <br>
+                    Individual: <br>
+                    MLTV:
+                </h6>
+            </div>
+
+
+            {% for player in a_tier %}
+                <div class="col text-start">
+                    <h6>
+                        {{ player.name }} <br>
+                        {{ player.JLTV }} <br> <br>
+                        {{ player.played }} <br>
+                        {{ player.total_wins }} <br>
+                        {{ player.total_kills }} <br>
+                        {{ player.total_rounds }} <br> <br>
+                        {{ player.AK }} <br>
+                        {{ player.KPR }} <br>
+                        {{ player.A_ADR }} <br>
+                        {{ player.winrate }}% <br> <br>
+                        {{ player.inconsistency }} <br>
+                        {{ player.team_balance }}% <br>
+                        {{ player.individual }} <br>
+                        {{ player.MLTV }}
+                    </h6>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if b_tier %}
+        <hr class="line-break">
+        <p class="tier b">B</p>
+        <div class="row justify-content-center b">
+            <div class="col text-end">
+                <h6>
+                    Player: <br>
+                    JLTV: <br> <br>
+                    Played: <br>
+                    Wins: <br>
+                    Kills: <br>
+                    Rounds_Played: <br> <br>
+                    Average_Kills: <br>
+                    KPR: <br>
+                    A/ADR: <br>
+                    Winrate: <br> <br>
+                    Inconsistency: <br>
+                    Team_Balance: <br>
+                    Individual: <br>
+                    MLTV:
+                </h6>
+            </div>
+
+            {% for player in b_tier %}
+                <div class="col text-start">
+                    <h6>
+                        {{ player.name }} <br>
+                        {{ player.JLTV }} <br> <br>
+                        {{ player.played }} <br>
+                        {{ player.total_wins }} <br>
+                        {{ player.total_kills }} <br>
+                        {{ player.total_rounds }} <br> <br>
+                        {{ player.AK }} <br>
+                        {{ player.KPR }} <br>
+                        {{ player.A_ADR }} <br>
+                        {{ player.winrate }}% <br> <br>
+                        {{ player.inconsistency }} <br>
+                        {{ player.team_balance }}% <br>
+                        {{ player.individual }} <br>
+                        {{ player.MLTV }}
+                    </h6>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if c_tier %}
+        <hr class="line-break">
+        <p class="tier c">C</p>
+        <div class="row justify-content-center c">
+            <div class="col text-end">
+                <h6>
+                    Player: <br>
+                    JLTV: <br> <br>
+                    Played: <br>
+                    Wins: <br>
+                    Kills: <br>
+                    Rounds_Played: <br> <br>
+                    Average_Kills: <br>
+                    KPR: <br>
+                    A/ADR: <br>
+                    Winrate: <br> <br>
+                    Inconsistency: <br>
+                    Team_Balance: <br>
+                    Individual: <br>
+                    MLTV:
+                </h6>
+            </div>
+
+            {% for player in c_tier %}
+                <div class="col text-start">
+                    <h6>
+                        {{ player.name }} <br>
+                        {{ player.JLTV }} <br> <br>
+                        {{ player.played }} <br>
+                        {{ player.total_wins }} <br>
+                        {{ player.total_kills }} <br>
+                        {{ player.total_rounds }} <br> <br>
+                        {{ player.AK }} <br>
+                        {{ player.KPR }} <br>
+                        {{ player.A_ADR }} <br>
+                        {{ player.winrate }}% <br> <br>
+                        {{ player.inconsistency }} <br>
+                        {{ player.team_balance }}% <br>
+                        {{ player.individual }} <br>
+                        {{ player.MLTV }}
+                    </h6>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if unranked %}
+        <hr class="line-break">
+        <p class="tier unranked">Unranked | 7 Games to Qualify</p>
+        <div class="row justify-content-center unranked">
+            <div class="col text-end">
+                <h6>
+                    Player: <br>
+                    JLTV: <br> <br>
+                    Played: <br>
+                    Wins: <br>
+                    Kills: <br>
+                    Rounds_Played: <br> <br>
+                    Average_Kills: <br>
+                    KPR: <br>
+                    A/ADR: <br>
+                    Winrate: <br> <br>
+                    Inconsistency: <br>
+                    Team_Balance: <br>
+                    Individual: <br>
+                    MLTV:
+                </h6>
+            </div>
+
+            {% for player in unranked %}
+                <div class="col text-start">
+                    <h6>
+                        {{ player.name }} <br>
+                        <br> <br>
+                        {{ player.played }} <br>
+                        {{ player.total_wins }} <br>
+                        {{ player.total_kills }} <br>
+                        {{ player.total_rounds }} <br> <br>
+                        {{ player.AK }} <br>
+                        {{ player.KPR }} <br>
+                        {{ player.A_ADR }} <br>
+                        {{ player.winrate }}% <br> <br>
+                        <br>
+                        <br>
+                        {{ player.individual }} <br>
+                        {{ player.MLTV }}
+                    </h6>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</div>
+
+
+{% include "footer.html" %}

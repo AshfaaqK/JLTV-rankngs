@@ -1,0 +1,81 @@
+{% include "header.html" %}
+
+<div class="container animate__animated animate__fadeIn">
+    {% for key in all_games %}
+        <h1 class="form-pad">Season {{ key }}</h1>
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Game ID</th>
+                    <th scope="col">Map</th>
+                    <th scope="col">Rounds</th>
+                    <th scope="col">Average JLTV</th>
+                    <th scope="col">Winners</th>
+
+                    {% if current_user.id == 1 %}
+                        <th scope="col">Delete Game</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for game in all_games[key] %}
+                    <tr>
+                        <td>{{ game[0] }}</td>
+
+                        {% if game[1] == 'Dust II' %}
+                            <td><img src="./static/csgo_icons/de_dust2.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Mirage' %}
+                            <td><img src="./static/csgo_icons/de_mirage.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Ancient' %}
+                            <td><img src="./static/csgo_icons/de_ancient.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Inferno' %}
+                            <td><img src="./static/csgo_icons/de_inferno.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Nuke' %}
+                            <td><img src="./static/csgo_icons/de_nuke.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Overpass' %}
+                            <td><img src="./static/csgo_icons/de_overpass.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Train' %}
+                            <td><img src="./static/csgo_icons/de_train.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Vertigo' %}
+                            <td><img src="./static/csgo_icons/de_vertigo.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Anubis' %}
+                            <td><img src="./static/csgo_icons/de_anubis.png" alt="Not Found"> {{ game[1] }}</td>
+
+                        {% elif game[1] == 'Cache' %}
+                            <td><img src="./static/csgo_icons/de_cache.png" alt="Not Found"> {{ game[1] }}</td>
+                        {% endif %}
+
+                        <td>{{ game[2] }}</td>
+                        <td>{{ game[3] }}</td>
+                        <td>{% for player in game[4] %}
+                                {{ player }}
+                            {% endfor %}
+                        </td>
+                        {% if current_user.id == 1 %}
+
+                            {% if game[0] == latest_game %}
+                            <td><a class="delete-submit" href="{{url_for('delete_game', game_id=game[0])}}" onclick="return confirm('Are you sure?')">Delete Game</a></td>
+                            {% endif %}
+
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% endfor %}
+</div>
+
+{% include "footer.html" %}

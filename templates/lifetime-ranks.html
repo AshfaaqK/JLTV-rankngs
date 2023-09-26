@@ -1,0 +1,252 @@
+{% include "header.html" %}
+
+<div class="container animate__animated animate__fadeIn">
+
+    <div class="row justify-content-center">
+
+        <div class="col form-pad">
+            <p class="text-center season-header">
+                {{ games }} Games Played
+            </p>
+        </div>
+
+    </div>
+
+    {% if s_tier %}
+        <p class="tier s">S</p>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">JLTV</th>
+                    <th scope="col">Played</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Kills</th>
+                    <th scope="col">Rounds Played</th>
+                    <th scope="col">Average Kills</th>
+                    <th scope="col">KPR</th>
+                    <th scope="col">A/ADR</th>
+                    <th scope="col">Winrate</th>
+                    <th scope="col">Inconsistency</th>
+                    <th scope="col">Team Balance</th>
+                    <th scope="col">Individual</th>
+                    <th scope="col">MLTV</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for player in s_tier %}
+                    <tr>
+                        <td style="color:#9bc2e6">{{ player.name }}</td>
+                        <td style="color:#9bc2e6">{{ player.JLTV }}</td>
+                        <td style="color:#9bc2e6">{{ player.played }}</td>
+                        <td style="color:#9bc2e6">{{ player.total_wins }}</td>
+                        <td style="color:#9bc2e6">{{ player.total_kills }}</td>
+                        <td style="color:#9bc2e6">{{ player.total_rounds }}</td>
+                        <td style="color:#9bc2e6">{{ player.AK }}</td>
+                        <td style="color:#9bc2e6">{{ player.KPR }}</td>
+                        <td style="color:#9bc2e6">{{ player.A_ADR }}</td>
+                        <td style="color:#9bc2e6">{{ player.winrate }}%</td>
+                        <td style="color:#9bc2e6">{{ player.inconsistency }}</td>
+                        <td style="color:#9bc2e6">{{ player.team_balance }}%</td>
+                        <td style="color:#9bc2e6">{{ player.individual }}</td>
+                        <td style="color:#9bc2e6">{{ player.MLTV }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+    {% if a_tier %}
+        <p class="tier a">A</p>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">JLTV</th>
+                    <th scope="col">Played</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Kills</th>
+                    <th scope="col">Rounds Played</th>
+                    <th scope="col">Average Kills</th>
+                    <th scope="col">KPR</th>
+                    <th scope="col">A/ADR</th>
+                    <th scope="col">Winrate</th>
+                    <th scope="col">Inconsistency</th>
+                    <th scope="col">Team Balance</th>
+                    <th scope="col">Individual</th>
+                    <th scope="col">MLTV</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for player in a_tier %}
+                    <tr>
+                        <td style="color:#a9d08e">{{ player.name }}</td>
+                        <td style="color:#a9d08e">{{ player.JLTV }}</td>
+                        <td style="color:#a9d08e">{{ player.played }}</td>
+                        <td style="color:#a9d08e">{{ player.total_wins }}</td>
+                        <td style="color:#a9d08e">{{ player.total_kills }}</td>
+                        <td style="color:#a9d08e">{{ player.total_rounds }}</td>
+                        <td style="color:#a9d08e">{{ player.AK }}</td>
+                        <td style="color:#a9d08e">{{ player.KPR }}</td>
+                        <td style="color:#a9d08e">{{ player.A_ADR }}</td>
+                        <td style="color:#a9d08e">{{ player.winrate }}%</td>
+                        <td style="color:#a9d08e">{{ player.inconsistency }}</td>
+                        <td style="color:#a9d08e">{{ player.team_balance }}%</td>
+                        <td style="color:#a9d08e">{{ player.individual }}</td>
+                        <td style="color:#a9d08e">{{ player.MLTV }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+    {% if b_tier %}
+        <p class="tier b">B</p>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">JLTV</th>
+                    <th scope="col">Played</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Kills</th>
+                    <th scope="col">Rounds Played</th>
+                    <th scope="col">Average Kills</th>
+                    <th scope="col">KPR</th>
+                    <th scope="col">A/ADR</th>
+                    <th scope="col">Winrate</th>
+                    <th scope="col">Inconsistency</th>
+                    <th scope="col">Team Balance</th>
+                    <th scope="col">Individual</th>
+                    <th scope="col">MLTV</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for player in b_tier %}
+                    <tr>
+                        <td style="color:#ffd966">{{ player.name }}</td>
+                        <td style="color:#ffd966">{{ player.JLTV }}</td>
+                        <td style="color:#ffd966">{{ player.played }}</td>
+                        <td style="color:#ffd966">{{ player.total_wins }}</td>
+                        <td style="color:#ffd966">{{ player.total_kills }}</td>
+                        <td style="color:#ffd966">{{ player.total_rounds }}</td>
+                        <td style="color:#ffd966">{{ player.AK }}</td>
+                        <td style="color:#ffd966">{{ player.KPR }}</td>
+                        <td style="color:#ffd966">{{ player.A_ADR }}</td>
+                        <td style="color:#ffd966">{{ player.winrate }}%</td>
+                        <td style="color:#ffd966">{{ player.inconsistency }}</td>
+                        <td style="color:#ffd966">{{ player.team_balance }}%</td>
+                        <td style="color:#ffd966">{{ player.individual }}</td>
+                        <td style="color:#ffd966">{{ player.MLTV }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+    {% if c_tier %}
+        <p class="tier c">C</p>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">JLTV</th>
+                    <th scope="col">Played</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Kills</th>
+                    <th scope="col">Rounds Played</th>
+                    <th scope="col">Average Kills</th>
+                    <th scope="col">KPR</th>
+                    <th scope="col">A/ADR</th>
+                    <th scope="col">Winrate</th>
+                    <th scope="col">Inconsistency</th>
+                    <th scope="col">Team Balance</th>
+                    <th scope="col">Individual</th>
+                    <th scope="col">MLTV</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for player in c_tier %}
+                    <tr>
+                        <td style="color:#f4b084">{{ player.name }}</td>
+                        <td style="color:#f4b084">{{ player.JLTV }}</td>
+                        <td style="color:#f4b084">{{ player.played }}</td>
+                        <td style="color:#f4b084">{{ player.total_wins }}</td>
+                        <td style="color:#f4b084">{{ player.total_kills }}</td>
+                        <td style="color:#f4b084">{{ player.total_rounds }}</td>
+                        <td style="color:#f4b084">{{ player.AK }}</td>
+                        <td style="color:#f4b084">{{ player.KPR }}</td>
+                        <td style="color:#f4b084">{{ player.A_ADR }}</td>
+                        <td style="color:#f4b084">{{ player.winrate }}%</td>
+                        <td style="color:#f4b084">{{ player.inconsistency }}</td>
+                        <td style="color:#f4b084">{{ player.team_balance }}%</td>
+                        <td style="color:#f4b084">{{ player.individual }}</td>
+                        <td style="color:#f4b084">{{ player.MLTV }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+    {% if unranked %}
+        <p class="tier unranked">Unranked | 7 Games to Qualify</p>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">JLTV</th>
+                    <th scope="col">Played</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Kills</th>
+                    <th scope="col">Rounds Played</th>
+                    <th scope="col">Average Kills</th>
+                    <th scope="col">KPR</th>
+                    <th scope="col">A/ADR</th>
+                    <th scope="col">Winrate</th>
+                    <th scope="col">Inconsistency</th>
+                    <th scope="col">Team Balance</th>
+                    <th scope="col">Individual</th>
+                    <th scope="col">MLTV</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for player in unranked %}
+                    <tr>
+                        <td style="color:#c9c9c9">{{ player.name }}</td>
+                        <td></td>
+                        <td style="color:#c9c9c9">{{ player.played }}</td>
+                        <td style="color:#c9c9c9">{{ player.total_wins }}</td>
+                        <td style="color:#c9c9c9">{{ player.total_kills }}</td>
+                        <td style="color:#c9c9c9">{{ player.total_rounds }}</td>
+                        <td style="color:#c9c9c9">{{ player.AK }}</td>
+                        <td style="color:#c9c9c9">{{ player.KPR }}</td>
+                        <td style="color:#c9c9c9">{{ player.A_ADR }}</td>
+                        <td style="color:#c9c9c9">{{ player.winrate }}%</td>
+                        <td></td>
+                        <td></td>
+                        <td style="color:#c9c9c9">{{ player.individual }}</td>
+                        <td style="color:#c9c9c9">{{ player.MLTV }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+</div>
+
+{% include "footer.html" %}

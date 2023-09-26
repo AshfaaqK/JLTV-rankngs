@@ -1,0 +1,174 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.form-pad {
+    padding-top: 30px;
+    padding-bot: 20px;
+}
+
+.player-form {
+    padding-top: 30px;
+    padding-bot: 20px;
+}
+
+.checkbox {
+    height: 25px;
+    width: 25px;
+}
+
+.submit {
+    height: 40px;
+    width: 90px;
+    border: none;
+    border-radius: 3%;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.submit:hover {
+    background-color: #3e8e41;
+}
+
+.nav-link-hover:hover {
+    color: #3e8e41;
+}
+
+.line-break {
+    margin: 40px 0;
+    border: 2px solid;
+}
+
+.season-header {
+    color: #3e8e41;
+    font-family: 'Yantramanav', sans-serif;
+    font-weight: 600;
+    font-size: 65px;
+}
+
+.footer-hr {
+    width: 90vw;
+    margin: 25px auto;
+}
+
+.footer {
+    margin-bottom: 20px;
+}
+
+.shiny-first {
+    background: linear-gradient(-45deg, #718B97 20%, #50C878 40%, #50C878 60%, #718B97 80%);
+    background-size: 200% auto;
+
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: shine 1.5s linear infinite;
+}
+
+.shiny-second {
+    background: linear-gradient(-45deg, #718B97 20%, #2596be 40%, #2596be 60%, #718B97 80%);
+    background-size: 200% auto;
+
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: shine 1.5s linear infinite;
+}
+
+.shiny-third {
+    background: linear-gradient(-45deg, #718B97 20%, #FFD700 40%, #FFD700 60%, #718B97 80%);
+    background-size: 200% auto;
+
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: shine 1.5s linear infinite;
+}
+
+@keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+}
+
+.tier {
+    margin-top: 60px;
+    font-size: 30px;
+}
+
+.s {
+    color: #9bc2e6;
+}
+
+.a {
+    color: #a9d08e;
+}
+
+.b {
+    color: #ffd966;
+}
+
+.c {
+    color: #f4b084;
+}
+
+.unranked {
+    color: #c9c9c9e;
+}
+
+.edit-submit:link {
+    text-decoration: none;
+    color: grey;
+}
+
+.edit-submit:visited {
+    text-decoration: none;
+    color: grey;
+}
+
+.edit-submit:hover {
+    text-decoration: none;
+    color: #3e8e41;
+}
+
+.edit-submit:active {
+    text-decoration: none;
+}
+
+.delete-submit:link {
+    text-decoration: none;
+    color: #972f2f;
+}
+
+.delete-submit:visited {
+    text-decoration: none;
+    color: #972f2f;
+}
+
+.delete-submit:hover {
+    text-decoration: none;
+    color: #e36301;
+}
+
+.delete-submit:active {
+    text-decoration: none;
+}
+
+.login-divide {
+    margin-top: 15px;
+}

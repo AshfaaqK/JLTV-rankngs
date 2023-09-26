@@ -1,0 +1,33 @@
+{% include "header.html" %}
+
+<div class="container">
+    <h1 class="form-pad">Login</h1>
+
+    <div class="row justify-content-center">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+
+              <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ message }}
+              </div>
+
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="col form-pad">
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.csrf_token }}
+
+                {{ form.username.label(style="font-weight: bold;") }} <br> {{ form.username }} <br>
+                {{ form.password.label(style="font-weight: bold;", class_ = 'login-divide') }} <br> {{ form.password }} <br>
+
+                {{ form.submit(class_ = 'submit') }}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}
