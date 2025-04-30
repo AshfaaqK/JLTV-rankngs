@@ -36,6 +36,9 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+.tmp.driveupload
+.tmp.driveupload/
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
