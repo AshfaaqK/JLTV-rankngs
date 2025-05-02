@@ -1145,59 +1145,55 @@ def create_teams():
     form.player10.choices = all_players
 
     if form.validate_on_submit():
-        # Get all Player IDs from Select Fields
-        data = request.form
+        # Get player IDs from form
+        player_ids = [request.form[f'player{i}'] for i in range(1, 11)]
 
-        player_ids = [data.get('player1'), data.get('player2'), data.get('player3'), data.get('player4'),
-                      data.get('player5'), data.get('player6'), data.get('player7'), data.get('player8'),
-                      data.get('player9'), data.get('player10')]
+        # Check for duplicate players
+        if len(player_ids) != len(set(player_ids)):
+            flash('Error: Each player can only be selected once!', 'error')
+            return redirect(url_for('create_teams'))  # Redirect back to form
 
-        selected_players = []
-        # Query Player name and append to list
-        for player_id in player_ids:
-            player_name = Player.query.filter_by(player_id=int(player_id)).first().name
+        # Rest of your team generation logic
+        try:
+            players = Player.query.filter(Player.player_id.in_(player_ids)).all()
 
-            selected_players.append(player_name)
+            if len(players) != 10:
+                flash('Error: Could not find all selected players!', 'error')
+                return redirect(url_for('create_teams'))
 
-        # Create team combinations using itertools
-        team_combinations = list(itertools.combinations(selected_players, 5))
+            # Continue with team generation...
+            players_sorted = sorted(players, key=lambda p: p.JLTV, reverse=True)
 
-        # Calculates difference between team's elo
-        def calculate_difference(team_1, team_2):
-            average_rating_team1 = sum(Player.query.filter_by(name=name).first().JLTV for name in team_1) / 5
-            average_rating_team2 = sum(Player.query.filter_by(name=name).first().JLTV for name in team_2) / 5
+            # Split top 4 players evenly
+            team1 = [players_sorted[0], players_sorted[3]]
+            team2 = [players_sorted[1], players_sorted[2]]
 
-            return abs(average_rating_team1 - average_rating_team2)
+            # Distribute remaining players
+            for i in range(4, len(players_sorted)):
+                if i % 2 == 0:
+                    team1.append(players_sorted[i])
+                else:
+                    team2.append(players_sorted[i])
 
-        iterations = []
+            # Calculate averages and prepare response
+            avg1 = sum(p.JLTV for p in team1) / 5
+            avg2 = sum(p.JLTV for p in team2) / 5
 
-        # Create 2 sets of teams with difference of elo
-        for combination in team_combinations:
-            team1 = list(combination)
-            team2 = list(set(selected_players) - set(combination))
-            difference = calculate_difference(team1, team2)
-            iterations.append((team1, team2, difference))
+            team_data = {
+                'team1': [p.name for p in team1],
+                'team2': [p.name for p in team2],
+                'difference': f"{abs(avg1 - avg2):.2f}",
+                'avg_rating1': f"{avg1:.2f}",
+                'avg_rating2': f"{avg2:.2f}"
+            }
 
-        sorted_iterations = sorted(iterations, key=lambda x: x[2])[:3]
+            return render_template('display_teams.html', team=team_data)
 
-        teams = ''
-        for i, result in enumerate(sorted_iterations):
-            teams += f'Iteration {i + 1}#Team 1: {result[0]}#Team 2: {result[1]}#Difference: {result[2]}#'
-
-        return redirect(url_for('display_teams', teams=teams))
+        except Exception as e:
+            flash(f'Error generating teams: {str(e)}', 'error')
+            return redirect(url_for('create_teams'))
 
     return render_template('create_teams.html', form=form)
-
-
-@app.route('/display-teams/<teams>')
-def display_teams(teams):
-    teams = list(teams.split('#'))
-
-    iteration1 = [teams[0], teams[1], teams[2], teams[3]]
-    iteration2 = [teams[4], teams[5], teams[6], teams[7]]
-    iteration3 = [teams[8], teams[9], teams[10], teams[11]]
-
-    return render_template('display_teams.html', iteration_1=iteration1, iteration_2=iteration2, iteration_3=iteration3)
 
 
 if __name__ == '__main__':
