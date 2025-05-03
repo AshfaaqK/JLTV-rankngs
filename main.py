@@ -7,7 +7,6 @@ from werkzeug.security import check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from functools import wraps
 from dotenv import load_dotenv
-import itertools
 import statistics
 import os
 
@@ -1153,7 +1152,6 @@ def create_teams():
             flash('Error: Each player can only be selected once!', 'error')
             return redirect(url_for('create_teams'))  # Redirect back to form
 
-        # Rest of your team generation logic
         try:
             players = Player.query.filter(Player.player_id.in_(player_ids)).all()
 
@@ -1161,7 +1159,6 @@ def create_teams():
                 flash('Error: Could not find all selected players!', 'error')
                 return redirect(url_for('create_teams'))
 
-            # Continue with team generation...
             players_sorted = sorted(players, key=lambda p: p.JLTV, reverse=True)
 
             # Split top 4 players evenly
@@ -1197,7 +1194,7 @@ def create_teams():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
 
 # TODO: Pull data from forms ✔
 
