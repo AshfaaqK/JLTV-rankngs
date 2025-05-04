@@ -71,8 +71,6 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-.idea/
-
 # Sphinx documentation
 docs/_build/
 

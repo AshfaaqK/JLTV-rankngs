@@ -273,9 +273,10 @@ def adjust_jltv():
 
             player.JLTV = round(9.4 + (player.MLTV / 2) + sum_mltv, 2)
 
+    current_season = Season.query.order_by(Season.season_id.desc()).first()
     # Calculate overall player stats for all seasons when season has been completed
     if current_season.games_played == 30:
-        season_players = SeasonPlayer.query.filter_by(season_id=x).all()
+        season_players = SeasonPlayer.query.filter_by(season_id=current_season.season_id).all()
 
         for season_player in season_players:
             if season_player.played > 0:
@@ -933,145 +934,9 @@ def add_game():
 
         current_season.player_count = no_of_players
 
-        current_season = Season.query.order_by(Season.season_id.desc()).first()
-        season_id = current_season.season_id
-
-        # Query game_id from first game of the season
-        first_game_of_szn = PlayerGameStats.query.filter_by(
-            season_id=season_id).order_by(
-            PlayerGameStats.game_id).first().game_id
-
-        # Query game_id from the latest game of the season
-        latest_game = PlayerGameStats.query.order_by(PlayerGameStats.game_id.desc()).first().game_id
-
-        # Recalculate every past game's JLTV and overall statistic: Inconsistency, Team Balance, MLTV and JLTV
-        for x in range(first_game_of_szn, latest_game + 1):
-            # Query 10 player stats for each game of the current season
-            player_games = PlayerGameStats.query.filter_by(game_id=x).filter_by(season_id=season_id).all()
-
-            team_1 = 0
-            team_2 = 0
-
-            # Recalculate Individual average
-            for player_game in player_games:
-                if player_game.win == 1:
-                    team_1 += SeasonPlayer.query.filter_by(
-                        season_id=season_id).filter_by(
-                        player_id=player_game.player_id).first().individual
-
-                else:
-                    team_2 += SeasonPlayer.query.filter_by(
-                        season_id=season_id).filter_by(
-                        player_id=player_game.player_id).first().individual
-
-            team_1_avg = round(team_1 / 5, 1)
-            team_2_avg = round(team_2 / 5, 1)
-
-            # Recalculate every game's jltv
-            for player_game in player_games:
-                game = Game.query.filter_by(game_id=player_game.game_id).first()
-                rounds = game.rounds
-
-                player = SeasonPlayer.query.filter_by(
-                    season_id=season_id).filter_by(
-                    player_id=player_game.player_id).first()
-
-                kpr = player_game.KPR
-                adr = player_game.ADR
-
-                if player_game.win == 1:
-                    jltv = round((((((kpr * 27) ** 0.8) *
-                                    ((player.winrate + 7) ** 0.1877) *
-                                    ((adr / 20) ** 0.1)) ** 0.8) * 1.39) * (team_2_avg / team_1_avg), 1)
-
-                else:
-                    jltv = round((((((kpr * 27) ** 0.8) *
-                                    ((player.winrate + 7) ** 0.1877) *
-                                    ((adr / 20) ** 0.1)) ** 0.8) * 1.39) * (team_1_avg / team_2_avg), 1)
-
-                player_game.JLTV = jltv
-
-                seasons_games = PlayerGameStats.query.filter_by(
-                    season_id=season_id).filter_by(
-                    player_id=player_game.player_id).all()
-
-                sum_jltv = 0
-                sum_mltv = 0
-                jltv_list = []
-
-                # Sum stats for all player's games
-                for players_game in seasons_games:
-                    sum_jltv += players_game.JLTV
-                    sum_mltv += players_game.MLTV
-                    jltv_list.append(players_game.JLTV)
-
-                # Calculate standard deviation from individual performance of every game in current season
-                if player.played >= 2:
-                    player.inconsistency = round(statistics.stdev(jltv_list), 1)
-
-                player.MLTV = round(sum_jltv / len(seasons_games), 1)
-
-                player.team_balance = round((((((((player.KPR * 27) ** 0.8) * ((player.winrate + 7) ** 0.1877) *
-                                                 ((player.A_ADR / 20) ** 0.1)) ** 0.8) * 1.379)
-                                              - player.MLTV) / player.MLTV) * 100, 0)
-
-                player.JLTV = round(9.4 + (player.MLTV / 2) + sum_mltv, 2)
-
-        # Calculate overall player stats for all seasons when season has been completed
-        if current_season.games_played == 30:
-            season_players = SeasonPlayer.query.filter_by(season_id=current_season.season_id).all()
-
-            for season_player in season_players:
-                if season_player.played > 0:
-                    overall_player = Player.query.filter_by(player_id=season_player.player_id).first()
-
-                    overall_player.played += season_player.played
-                    overall_player.total_wins += season_player.total_wins
-                    overall_player.total_kills += season_player.total_kills
-                    overall_player.total_rounds += season_player.total_rounds
-
-                    all_players_season = SeasonPlayer.query.filter_by(player_id=season_player.player_id).all()
-
-                    overall_adr = 0
-                    overall_mltv = 0
-                    for players_season in all_players_season:
-                        overall_adr += players_season.A_ADR
-                        overall_mltv += players_season.MLTV
-
-                    played_seasons = len(SeasonPlayer.query.filter_by(player_id=season_player.player_id).all())
-
-                    overall_player.AK = round(overall_player.total_kills / overall_player.played, 2)
-                    overall_player.KPR = round(overall_player.total_kills / overall_player.total_rounds, 3)
-                    overall_player.A_ADR = round(overall_adr / played_seasons, 0)
-                    overall_player.winrate = round((overall_player.total_wins / overall_player.played) * 100, 0)
-
-                    overall_player.individual = round(
-                        ((((overall_player.KPR * 27) ** 0.8) * ((50 + 7) ** 0.1877) *
-                          (overall_player.A_ADR / 20) ** 0.1) ** 0.8) * 1.379, 1)
-
-                    overall_player.MLTV = round(overall_mltv / played_seasons, 1)
-
-                    overall_player.team_balance = round((((((((overall_player.KPR * 27) ** 0.8) *
-                                                             ((overall_player.winrate + 7) ** 0.1877) *
-                                                             ((overall_player.A_ADR / 20) ** 0.1)) ** 0.8) * 1.379)
-                                                          - overall_player.MLTV) / overall_player.MLTV) * 100, 0)
-
-                    player_stats = PlayerGameStats.query.filter_by(player_id=season_player.player_id).all()
-
-                    sum_mltv = 0
-                    jltv_list = []
-                    for player_stat in player_stats:
-                        sum_mltv += player_stat.MLTV
-                        jltv_list.append(player_stat.JLTV)
-
-                    if len(player_stats) >= 2:
-                        overall_player.inconsistency = round(statistics.stdev(jltv_list), 1)
-
-                    overall_player.JLTV = round(9.4 + (overall_player.MLTV / 2) + sum_mltv, 2)
-
         db.session.commit()
 
-        return redirect(url_for('home'))
+        return redirect(url_for('adjust_jltv'))
 
     return render_template('add_game.html', form=form)
 
