@@ -806,17 +806,29 @@ def add_game():
         # Get all Player entries
         data = request.form
 
+        rounds_played = int(data.get('rounds'))
+
         all_player_stats = [
-            [data.get('player1'), data.get('kills1'), data.get('adr1'), data.get('win1')],
-            [data.get('player2'), data.get('kills2'), data.get('adr2'), data.get('win2')],
-            [data.get('player3'), data.get('kills3'), data.get('adr3'), data.get('win3')],
-            [data.get('player4'), data.get('kills4'), data.get('adr4'), data.get('win4')],
-            [data.get('player5'), data.get('kills5'), data.get('adr5'), data.get('win5')],
-            [data.get('player6'), data.get('kills6'), data.get('adr6'), data.get('win6')],
-            [data.get('player7'), data.get('kills7'), data.get('adr7'), data.get('win7')],
-            [data.get('player8'), data.get('kills8'), data.get('adr8'), data.get('win8')],
-            [data.get('player9'), data.get('kills9'), data.get('adr9'), data.get('win9')],
-            [data.get('player10'), data.get('kills10'), data.get('adr10'), data.get('win10')],
+            [data.get('player1'), data.get('kills1'),
+             round(int(data.get('damage1')) / rounds_played, 0), data.get('win1')],
+            [data.get('player2'), data.get('kills2'),
+             round(int(data.get('damage2')) / rounds_played, 0), data.get('win2')],
+            [data.get('player3'), data.get('kills3'),
+             round(int(data.get('damage3')) / rounds_played, 0), data.get('win3')],
+            [data.get('player4'), data.get('kills4'),
+             round(int(data.get('damage4')) / rounds_played, 0), data.get('win4')],
+            [data.get('player5'), data.get('kills5'),
+             round(int(data.get('damage5')) / rounds_played, 0), data.get('win5')],
+            [data.get('player6'), data.get('kills6'),
+             round(int(data.get('damage6')) / rounds_played, 0), data.get('win6')],
+            [data.get('player7'), data.get('kills7'),
+             round(int(data.get('damage7')) / rounds_played, 0), data.get('win7')],
+            [data.get('player8'), data.get('kills8'),
+             round(int(data.get('damage8')) / rounds_played, 0), data.get('win8')],
+            [data.get('player9'), data.get('kills9'),
+             round(int(data.get('damage9')) / rounds_played, 0), data.get('win9')],
+            [data.get('player10'), data.get('kills10'),
+             round(int(data.get('damage10')) / rounds_played, 0), data.get('win10')],
         ]
 
         # Get winning and losing team average individual

@@ -14,52 +14,52 @@ class StatsForm(FlaskForm):
 
     player1 = SelectField(u'Player 1', coerce=int)
     kills1 = IntegerField('Kills', validators=[DataRequired()])
-    adr1 = IntegerField('ADR', validators=[DataRequired()])
+    damage1 = IntegerField('Damage', validators=[DataRequired()])
     win1 = BooleanField('Win', default=True)
 
     player2 = SelectField(u'Player 2', coerce=int)
     kills2 = IntegerField('Kills', validators=[DataRequired()])
-    adr2 = IntegerField('ADR', validators=[DataRequired()])
+    damage2 = IntegerField('Damage', validators=[DataRequired()])
     win2 = BooleanField('Win', default=True)
 
     player3 = SelectField(u'Player 3', coerce=int)
     kills3 = IntegerField('Kills', validators=[DataRequired()])
-    adr3 = IntegerField('ADR', validators=[DataRequired()])
+    damage3 = IntegerField('Damage', validators=[DataRequired()])
     win3 = BooleanField('Win', default=True)
 
     player4 = SelectField(u'Player 4', coerce=int)
     kills4 = IntegerField('Kills', validators=[DataRequired()])
-    adr4 = IntegerField('ADR', validators=[DataRequired()])
+    damage4 = IntegerField('Damage', validators=[DataRequired()])
     win4 = BooleanField('Win', default=True)
 
     player5 = SelectField(u'Player 5', coerce=int)
     kills5 = IntegerField('Kills', validators=[DataRequired()])
-    adr5 = IntegerField('ADR', validators=[DataRequired()])
+    damage5 = IntegerField('Damage', validators=[DataRequired()])
     win5 = BooleanField('Win', default=True)
 
     player6 = SelectField(u'Player 6', coerce=int)
     kills6 = IntegerField('Kills', validators=[DataRequired()])
-    adr6 = IntegerField('ADR', validators=[DataRequired()])
+    damage6 = IntegerField('Damage', validators=[DataRequired()])
     win6 = BooleanField('Win')
 
     player7 = SelectField(u'Player 7', coerce=int)
     kills7 = IntegerField('Kills', validators=[DataRequired()])
-    adr7 = IntegerField('ADR', validators=[DataRequired()])
+    damage7 = IntegerField('Damage', validators=[DataRequired()])
     win7 = BooleanField('Win')
 
     player8 = SelectField(u'Player 8', coerce=int)
     kills8 = IntegerField('Kills', validators=[DataRequired()])
-    adr8 = IntegerField('ADR', validators=[DataRequired()])
+    damage8 = IntegerField('Damage', validators=[DataRequired()])
     win8 = BooleanField('Win')
 
     player9 = SelectField(u'Player 9', coerce=int)
     kills9 = IntegerField('Kills', validators=[DataRequired()])
-    adr9 = IntegerField('ADR', validators=[DataRequired()])
+    damage9 = IntegerField('Damage', validators=[DataRequired()])
     win9 = BooleanField('Win')
 
     player10 = SelectField(u'Player 10', coerce=int)
     kills10 = IntegerField('Kills', validators=[DataRequired()])
-    adr10 = IntegerField('ADR', validators=[DataRequired()])
+    damage10 = IntegerField('Damage', validators=[DataRequired()])
     win10 = BooleanField('Win')
 
     submit = SubmitField("Submit")
