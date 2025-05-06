@@ -1070,9 +1070,6 @@ def create_teams():
     return render_template('create_teams.html', form=form)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 # TODO: Pull data from forms ✔
 
 # TODO: Do calculations ✔
